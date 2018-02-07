@@ -46,7 +46,7 @@ class WritableBook extends Item{
 	 * @return bool
 	 */
 	public function pageExists(int $pageId) : bool{
-		return isset($this->getPages()[$pageId]);
+		return $this->getPagesTag()->isset($pageId);
 	}
 
 	/**
@@ -62,7 +62,7 @@ class WritableBook extends Item{
 			return null;
 		}
 
-		$page = $pages[$pageId] ?? null;
+		$page = $pages->get($pageId);
 		if($page instanceof CompoundTag){
 			return $page->getString(self::TAG_PAGE_TEXT, "");
 		}
@@ -85,9 +85,11 @@ class WritableBook extends Item{
 			$created = true;
 		}
 
+		/** @var CompoundTag[]|ListTag $pagesTag */
 		$pagesTag = $this->getPagesTag();
-		/** @var CompoundTag[]|ListTag $pages */
-		$pagesTag[$pageId]->setString(self::TAG_PAGE_TEXT, $pageText);
+		/** @var CompoundTag $page */
+		$page = $pagesTag->get($pageId);
+		$page->setString(self::TAG_PAGE_TEXT, $pageText);
 
 		$this->setNamedTagEntry($pagesTag);
 
