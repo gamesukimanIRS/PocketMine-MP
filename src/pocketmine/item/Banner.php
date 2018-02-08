@@ -80,7 +80,7 @@ class Banner extends Item{
 		$patternsTag = $this->getNamedTag()->getListTag(self::TAG_PATTERNS);
 		assert($patternsTag !== null);
 
-		$patternsTag->append(new CompoundTag("", [
+		$patternsTag->push(new CompoundTag("", [
 			new IntTag(self::TAG_PATTERN_COLOR, $color & 0x0f),
 			new StringTag(self::TAG_PATTERN_NAME, $pattern)
 		]));

@@ -110,7 +110,7 @@ class WritableBook extends Item{
 		$pagesTag = $this->getPagesTag();
 
 		for($current = $pagesTag->count(); $current <= $pageId; $current++){
-			$pagesTag->append(new CompoundTag("", [
+			$pagesTag->push(new CompoundTag("", [
 				new StringTag(self::TAG_PAGE_TEXT, ""),
 				new StringTag(self::TAG_PAGE_PHOTONAME, "")
 			]));

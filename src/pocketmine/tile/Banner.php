@@ -141,7 +141,7 @@ class Banner extends Spawnable implements Nameable{
 	public function addPattern(string $pattern, int $color) : int{
 		$list = $this->namedtag->getListTag(self::TAG_PATTERNS);
 		assert($list !== null);
-		$list->append(new CompoundTag("", [
+		$list->push(new CompoundTag("", [
 			new IntTag(self::TAG_PATTERN_COLOR, $color & 0x0f),
 			new StringTag(self::TAG_PATTERN_NAME, $pattern)
 		]));
